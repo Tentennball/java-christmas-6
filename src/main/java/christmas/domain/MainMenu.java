@@ -27,7 +27,7 @@ public enum MainMenu {
         return price;
     }
 
-    public int getOrderCount(){
+    public static int getOrderCount(){
         return orderCount;
     }
 }

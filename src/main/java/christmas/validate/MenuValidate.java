@@ -2,7 +2,6 @@ package christmas.validate;
 
 import christmas.constant.ErrorConstant;
 import christmas.constant.ValidateConstant;
-import christmas.domain.Beverage;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -38,6 +37,11 @@ public class MenuValidate {
         if(beverageMenuCount==totalMenuCount){
             throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
         }
+    }
 
+    public static void validateValidMenu(boolean valid){
+        if(!valid){
+            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+        }
     }
 }

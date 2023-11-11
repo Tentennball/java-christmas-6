@@ -19,19 +19,20 @@ public class MenuService {
 
     public void initOrderCount(Map<String, Integer> orders, Order order) {
         for (String orderKey : orders.keySet()) {
-            findCorrectKey(orderKey, order, orders);
+            boolean findKey = findCorrectKey(orderKey, order, orders);
+            MenuValidate.validateValidMenu(findKey);
         }
         MenuValidate.validateOnlyBeverage(Beverage.getOrderCount(), order.getTotalOrderCount());
     }
 
-    public void findCorrectKey(String orderKey, Order order, Map<String, Integer> orders) {
+    public Boolean findCorrectKey(String orderKey, Order order, Map<String, Integer> orders) {
         for (Beverage beverageMenu : Beverage.values()) {
             if (orderKey.equals(beverageMenu.getName())) {
                 int orderCount = orders.get(orderKey);
                 Beverage.addOrderCount(orderCount);
                 order.addTotalPrice(beverageMenu.getPrice() * orderCount);
                 order.addTotalOrderCount(orderCount);
-                return;
+                return true;
             }
         }
         for (Appetizer appetizerMenu : Appetizer.values()) {
@@ -40,7 +41,7 @@ public class MenuService {
                 Appetizer.addOrderCount(orderCount);
                 order.addTotalPrice(appetizerMenu.getPrice() * orderCount);
                 order.addTotalOrderCount(orderCount);
-                return;
+                return true;
             }
         }
         for (MainMenu mainMenu : MainMenu.values()) {
@@ -48,8 +49,8 @@ public class MenuService {
                 int orderCount = orders.get(orderKey);
                 MainMenu.addOrderCount(orderCount);
                 order.addTotalPrice(mainMenu.getPrice() * orderCount);
-                order.addTotalPrice(orderCount);
-                return;
+                order.addTotalOrderCount(orderCount);
+                return true;
             }
         }
         for (Dessert dessertMenu : Dessert.values()) {
@@ -58,7 +59,9 @@ public class MenuService {
                 Dessert.addOrderCount(orderCount);
                 order.addTotalPrice(dessertMenu.getPrice() * orderCount);
                 order.addTotalOrderCount(orderCount);
+                return true;
             }
         }
+        return false;
     }
 }

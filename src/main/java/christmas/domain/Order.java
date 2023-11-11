@@ -1,6 +1,5 @@
 package christmas.domain;
 
-import java.util.EnumMap;
 
 public class Order {
     private int totalPrice = 0;
@@ -24,5 +23,9 @@ public class Order {
 
     public int getTotalOrderCount(){
         return totalOrderCount;
+    }
+
+    public int getTotalPrice(){
+        return totalPrice;
     }
 }

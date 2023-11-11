@@ -10,6 +10,9 @@ public class Date {
         this.date = Integer.parseInt(date);
     }
 
+    public int getDate(){
+        return date;
+    }
     private void dateValidate(String date){
         DateValidate.validateNumeric(date);
         DateValidate.validateDateSize(date);

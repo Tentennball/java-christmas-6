@@ -26,7 +26,6 @@ public class OrderController {
         Menu menu = inputMenu();
         Order order = menuService.initOrder(date,menu);
         menuService.initOrderCount(menu.getMenuInfo(), order);
-
     }
 
     public void welcomeGreet() {
