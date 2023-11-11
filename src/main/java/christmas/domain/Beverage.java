@@ -17,6 +17,7 @@ public enum Beverage {
     public static void addOrderCount(int orderCount) {
         Beverage.orderCount += orderCount;
     }
+
     public String getName() {
         return name;
     }
@@ -28,4 +29,5 @@ public enum Beverage {
     public static int getOrderCount() {
         return orderCount;
     }
+
 }
