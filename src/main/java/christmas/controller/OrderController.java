@@ -3,6 +3,7 @@ package christmas.controller;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
 import christmas.domain.Date;
+import christmas.domain.Order;
 import christmas.service.DateService;
 import christmas.service.MenuService;
 import christmas.view.ErrorView;
@@ -23,6 +24,8 @@ public class OrderController {
         welcomeGreet();
         Date date = inputDate();
         Menu menu = inputMenu();
+        Order order = menuService.initOrder(date,menu);
+        menuService.initOrderCount(menu.getMenuInfo(), order);
     }
 
     public void welcomeGreet() {

@@ -1,6 +1,6 @@
 package christmas.domain;
 
-import validate.DateValidate;
+import christmas.validate.DateValidate;
 
 public class Date {
     private int date;
