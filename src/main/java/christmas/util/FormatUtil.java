@@ -1,7 +1,7 @@
 package christmas.util;
 
 import christmas.constant.ValidateConstant;
-import validate.MenuValidate;
+import christmas.validate.MenuValidate;
 
 import java.util.HashMap;
 import java.util.Map;

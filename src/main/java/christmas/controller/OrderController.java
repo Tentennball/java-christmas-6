@@ -23,6 +23,7 @@ public class OrderController {
         welcomeGreet();
         Date date = inputDate();
         Menu menu = inputMenu();
+        Order order = menuService.initOrder(date,menu);
     }
 
     public void welcomeGreet() {

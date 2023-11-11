@@ -1,4 +1,4 @@
-package validate;
+package christmas.validate;
 
 import christmas.constant.ErrorConstant;
 import christmas.constant.ExceptionConstant;
