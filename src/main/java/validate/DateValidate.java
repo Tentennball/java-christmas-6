@@ -1,10 +1,9 @@
 package validate;
 
-import christmas.config.ErrorConstant;
-import christmas.config.ExceptionConstant;
-import christmas.config.ValidateConstant;
+import christmas.constant.ErrorConstant;
+import christmas.constant.ExceptionConstant;
+import christmas.constant.ValidateConstant;
 import christmas.util.FormatUtil;
-import christmas.view.ErrorView;
 
 import java.util.regex.Pattern;
 

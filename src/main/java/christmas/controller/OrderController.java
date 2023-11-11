@@ -22,7 +22,7 @@ public class OrderController {
     public void run() {
         welcomeGreet();
         Date date = inputDate();
-        //Menu menu = inputMenu();
+        Menu menu = inputMenu();
     }
 
     public void welcomeGreet() {
@@ -31,18 +31,26 @@ public class OrderController {
 
     public Date inputDate() {
         try {
-            InputView.printReservationDatePrompt();
+            InputView.printReservationDateDecision();
             String reservationDate = Console.readLine();
             return dateService.reserveDate(reservationDate);
-        } catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
             return inputDate();
         }
     }
 
-//public Menu inputMenu() {
+    public Menu inputMenu() {
+        try {
+            InputView.printOrderRequest();
+            String menuInfo = Console.readLine();
+            return menuService.initMenu(menuInfo);
 
- //   }
+        } catch (IllegalArgumentException e) {
+            ErrorView.printErrorMessage(e.getMessage());
+            return inputMenu();
+        }
+    }
 
 
 }
