@@ -47,14 +47,17 @@ public class OrderService {
         }
         if (menuCategory instanceof BeverageName) {
             Beverage beverageMenuInfo = Beverage.getOrderInfo(orderKey);
+            order.addBeverageOrderCount(orderCount);
             updateOrder(beverageMenuInfo.getPrice(), orderCount, order);
         }
         if (menuCategory instanceof MainMenuName) {
             MainMenu mainMenuMenuInfo = MainMenu.getOrderInfo(orderKey);
+            order.addMainMenuOrderCount(orderCount);
             updateOrder(mainMenuMenuInfo.getPrice(), orderCount, order);
         }
         if (menuCategory instanceof DessertName) {
             Dessert dessertMenuInfo = Dessert.getOrderInfo(orderKey);
+            order.addDessertOrderCount(orderCount);
             updateOrder(dessertMenuInfo.getPrice(), orderCount, order);
         }
     }

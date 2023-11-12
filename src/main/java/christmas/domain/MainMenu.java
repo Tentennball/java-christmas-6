@@ -9,7 +9,6 @@ public enum MainMenu {
     private final String name;
     private final int price;
 
-
     MainMenu(String name, int price) {
         this.name = name;
         this.price = price;

@@ -14,7 +14,6 @@ public class EventController {
     public void runningEvent(Date date, Order order) {
         int reserveDate = date.getDate();
         int totalPrice = order.getTotalPrice();
-
         
     }
 }

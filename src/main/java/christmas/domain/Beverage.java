@@ -30,6 +30,4 @@ public enum Beverage {
         return price;
     }
 
-
-
 }
