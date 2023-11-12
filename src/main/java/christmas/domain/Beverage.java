@@ -7,15 +7,19 @@ public enum Beverage {
 
     private final String name;
     private final int price;
-    private static int orderCount = 0;
 
     Beverage(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public static void addOrderCount(int orderCount) {
-        Beverage.orderCount += orderCount;
+    public static Beverage getOrderInfo(String key) {
+        for (Beverage value : Beverage.values()) {
+            if (key.equals(value.getName())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public String getName() {
@@ -26,8 +30,6 @@ public enum Beverage {
         return price;
     }
 
-    public static int getOrderCount() {
-        return orderCount;
-    }
+
 
 }

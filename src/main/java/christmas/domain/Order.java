@@ -4,14 +4,10 @@ package christmas.domain;
 public class Order {
     private int totalPrice = 0;
     private int totalOrderCount = 0;
-    private Date date;
-    private Menu menu;
+    private int dessertOrderCount = 0;
+    private int mainMenuOrderCount = 0;
+    private int beverageOrderCount = 0;
 
-    public Order(Date date, Menu menu) {
-        this.date = date;
-        this.menu = menu;
-
-    }
 
     public void addTotalPrice(int price) {
         totalPrice += price;

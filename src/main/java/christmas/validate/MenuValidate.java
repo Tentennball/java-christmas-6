@@ -1,6 +1,7 @@
 package christmas.validate;
 
 import christmas.constant.ErrorConstant;
+import christmas.constant.ExceptionConstant;
 import christmas.constant.ValidateConstant;
 
 import java.util.HashSet;
@@ -10,7 +11,7 @@ import java.util.Set;
 public class MenuValidate {
     public static void validateInputFormat(String input) {
         if (!input.matches(ValidateConstant.MENU_REGEX)) {
-            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
 
@@ -19,7 +20,7 @@ public class MenuValidate {
         try {
             menuName.add(input[0]);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
 
@@ -28,20 +29,20 @@ public class MenuValidate {
         for (String menu : menuInfo.keySet()) {
             menuCount += menuInfo.get(menu);
         }
-        if (menuCount < 0 || menuCount > 30) {
-            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+        if (menuCount < 0 || menuCount > 20) {
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
 
     public static void validateOnlyBeverage(int beverageMenuCount, int totalMenuCount) {
         if(beverageMenuCount==totalMenuCount){
-            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
 
-    public static void validateValidMenu(boolean valid){
-        if(!valid){
-            throw new IllegalArgumentException(ErrorConstant.INVALID_ORDER);
+    public static void validateValidMenu(Object valid){
+        if(valid==null){
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
 }

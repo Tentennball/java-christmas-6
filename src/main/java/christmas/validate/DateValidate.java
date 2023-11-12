@@ -12,12 +12,12 @@ public class DateValidate {
 
     public static void validateNumeric(String input) {
         if (!DATE_REGEX.matcher(input).matches())
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.NOT_NUMERIC);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_DATE);
     }
 
     public static void validateDateSize(String date) {
         int numericDate = FormatUtil.stringToInteger(date);
         if (numericDate > 31 || numericDate < 1)
-            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.OUT_OF_RANGE);
+            throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_DATE);
     }
 }

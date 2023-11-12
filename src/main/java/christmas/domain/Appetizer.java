@@ -7,15 +7,19 @@ public enum Appetizer {
 
     private final String name;
     private final int price;
-    private static int orderCount = 0;
 
     Appetizer(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public static void addOrderCount(int orderCount) {
-        Appetizer.orderCount += orderCount;
+    public static Appetizer getOrderInfo(String key) {
+        for (Appetizer value : Appetizer.values()) {
+            if (key.equals(value.getName())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public String getName() {
@@ -24,9 +28,5 @@ public enum Appetizer {
 
     public int getPrice() {
         return price;
-    }
-
-    public int getOrderCount() {
-        return orderCount;
     }
 }

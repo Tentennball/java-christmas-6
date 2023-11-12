@@ -1,10 +1,10 @@
 package christmas;
 
-import christmas.controller.OrderController;
+import christmas.controller.PromotionController;
 
 public class Application {
     public static void main(String[] args) {
-        OrderController orderController = new OrderController();
-        orderController.run();
+        PromotionController promotionController = new PromotionController();
+        promotionController.run();
     }
 }

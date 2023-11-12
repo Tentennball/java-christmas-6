@@ -7,17 +7,19 @@ public enum Dessert {
     private final String name;
     private final int price;
 
-    private static int orderCount = 0;
-
     Dessert(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public static void addOrderCount(int orderCount) {
-        Dessert.orderCount += orderCount;
+    public static Dessert getOrderInfo(String key) {
+        for (Dessert value : Dessert.values()) {
+            if (key.equals(value.getName())) {
+                return value;
+            }
+        }
+        return null;
     }
-
     public String getName() {
         return name;
     }
@@ -26,7 +28,4 @@ public enum Dessert {
         return price;
     }
 
-    public int getOrderCount(){
-        return orderCount;
-    }
 }

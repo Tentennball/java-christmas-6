@@ -1,59 +1,54 @@
 package christmas.controller;
 
+import java.util.Map;
+
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.Menu;
 import christmas.domain.Date;
 import christmas.domain.Order;
 import christmas.service.DateService;
-import christmas.service.MenuService;
+import christmas.service.OrderService;
 import christmas.view.ErrorView;
 import christmas.view.InputView;
-import christmas.view.OutputView;
-
 
 public class OrderController {
     DateService dateService;
-    MenuService menuService;
+    OrderService orderService;
 
     public OrderController() {
         dateService = new DateService();
-        menuService = new MenuService();
+        orderService = new OrderService();
     }
 
-    public void run() {
-        welcomeGreet();
-        Date date = inputDate();
-        Menu menu = inputMenu();
-        Order order = menuService.initOrder(date,menu);
-        menuService.initOrderCount(menu.getMenuInfo(), order);
-    }
-
-    public void welcomeGreet() {
-        OutputView.printWelcomeGreeting();
-    }
-
-    public Date inputDate() {
+    public Date generateDate() {
         try {
             InputView.printReservationDateDecision();
             String reservationDate = Console.readLine();
             return dateService.reserveDate(reservationDate);
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
-            return inputDate();
+            return generateDate();
         }
     }
 
-    public Menu inputMenu() {
+    public Menu generateMenu() {
         try {
             InputView.printOrderRequest();
             String menuInfo = Console.readLine();
-            return menuService.initMenu(menuInfo);
+            return orderService.initMenu(menuInfo);
 
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
-            return inputMenu();
+            return generateMenu();
         }
     }
 
+    public Order generateOrder() {
+        return orderService.initOrder();
+    }
 
+    public void generateOrderCount(Map<String, Integer> menuInfo, Order order) {
+        orderService.initOrderCount(menuInfo, order);
+        System.out.println(order.getTotalPrice());
+    }
 }

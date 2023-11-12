@@ -8,15 +8,20 @@ public enum MainMenu {
 
     private final String name;
     private final int price;
-    private static int orderCount = 0;
+
 
     MainMenu(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public static void addOrderCount(int orderCount) {
-        MainMenu.orderCount += orderCount;
+    public static MainMenu getOrderInfo(String key) {
+        for (MainMenu value : MainMenu.values()) {    
+            if (key.equals(value.getName())) {
+                return value;
+            }
+        }
+        return null;
     }
 
     public String getName() {
@@ -27,7 +32,4 @@ public enum MainMenu {
         return price;
     }
 
-    public static int getOrderCount(){
-        return orderCount;
-    }
 }

@@ -3,65 +3,64 @@ package christmas.service;
 import christmas.domain.*;
 import christmas.util.FormatUtil;
 import christmas.validate.MenuValidate;
-
 import java.util.Map;
 
-public class MenuService {
+public class OrderService {
     public Menu initMenu(String rawMenuInfo) {
         MenuValidate.validateInputFormat(rawMenuInfo);
         Map<String, Integer> menuInfo = FormatUtil.splitMenuNameAndCount(rawMenuInfo);
         return new Menu(menuInfo);
     }
 
-    public Order initOrder(Date date, Menu menu) {
-        return new Order(date, menu);
+    public Order initOrder() {
+        return new Order();
     }
 
     public void initOrderCount(Map<String, Integer> orders, Order order) {
         for (String orderKey : orders.keySet()) {
-            boolean findKey = findCorrectKey(orderKey, order, orders);
-            MenuValidate.validateValidMenu(findKey);
+            Object menuCategory = findCorrectKey(orderKey);
+            updateOrderInfo(menuCategory, order, orderKey, orders.get(orderKey));
         }
-        MenuValidate.validateOnlyBeverage(Beverage.getOrderCount(), order.getTotalOrderCount());
     }
 
-    public Boolean findCorrectKey(String orderKey, Order order, Map<String, Integer> orders) {
-        for (Beverage beverageMenu : Beverage.values()) {
-            if (orderKey.equals(beverageMenu.getName())) {
-                int orderCount = orders.get(orderKey);
-                Beverage.addOrderCount(orderCount);
-                order.addTotalPrice(beverageMenu.getPrice() * orderCount);
-                order.addTotalOrderCount(orderCount);
-                return true;
-            }
+    public Object findCorrectKey(String orderKey) {
+        MenuInfo menuInfo = initMenuInfo();
+        Object menuCategory = menuInfo.findKey(orderKey);
+        
+        MenuValidate.validateValidMenu(menuCategory);
+
+        return menuCategory;
+    }
+
+    public MenuInfo initMenuInfo() {
+        AppetizerName appetizerNames = new AppetizerName();
+        BeverageName beverageNames = new BeverageName();
+        MainMenuName mainMenuNames = new MainMenuName();
+        DessertName dessertNames = new DessertName();
+        return new MenuInfo(appetizerNames, beverageNames, mainMenuNames, dessertNames);
+    }
+
+    public void updateOrderInfo(Object menuCategory, Order order, String orderKey, int orderCount) {
+        if (menuCategory instanceof AppetizerName) {
+            Appetizer appetizerMenuInfo = Appetizer.getOrderInfo(orderKey);
+            updateOrder(appetizerMenuInfo.getPrice(), orderCount, order);
         }
-        for (Appetizer appetizerMenu : Appetizer.values()) {
-            if (orderKey.equals(appetizerMenu.getName())) {
-                int orderCount = orders.get(orderKey);
-                Appetizer.addOrderCount(orderCount);
-                order.addTotalPrice(appetizerMenu.getPrice() * orderCount);
-                order.addTotalOrderCount(orderCount);
-                return true;
-            }
+        if (menuCategory instanceof BeverageName) {
+            Beverage beverageMenuInfo = Beverage.getOrderInfo(orderKey);
+            updateOrder(beverageMenuInfo.getPrice(), orderCount, order);
         }
-        for (MainMenu mainMenu : MainMenu.values()) {
-            if (orderKey.equals(mainMenu.getName())) {
-                int orderCount = orders.get(orderKey);
-                MainMenu.addOrderCount(orderCount);
-                order.addTotalPrice(mainMenu.getPrice() * orderCount);
-                order.addTotalOrderCount(orderCount);
-                return true;
-            }
+        if (menuCategory instanceof MainMenuName) {
+            MainMenu mainMenuMenuInfo = MainMenu.getOrderInfo(orderKey);
+            updateOrder(mainMenuMenuInfo.getPrice(), orderCount, order);
         }
-        for (Dessert dessertMenu : Dessert.values()) {
-            if (orderKey.equals(dessertMenu.getName())) {
-                int orderCount = orders.get(orderKey);
-                Dessert.addOrderCount(orderCount);
-                order.addTotalPrice(dessertMenu.getPrice() * orderCount);
-                order.addTotalOrderCount(orderCount);
-                return true;
-            }
+        if (menuCategory instanceof DessertName) {
+            Dessert dessertMenuInfo = Dessert.getOrderInfo(orderKey);
+            updateOrder(dessertMenuInfo.getPrice(), orderCount, order);
         }
-        return false;
+    }
+
+    public void updateOrder(int price, int orderCount, Order order) {
+        order.addTotalOrderCount(orderCount);
+        order.addTotalPrice(price * orderCount);
     }
 }
