@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.Badge;
 import christmas.domain.ChristmasEvent;
 import christmas.domain.Order;
 import christmas.domain.PresentEvent;
@@ -7,38 +8,56 @@ import christmas.domain.SpecialEvent;
 import christmas.domain.WeekdayEvent;
 import christmas.domain.WeekendEvent;
 
+import java.util.List;
+
 public class EventService {
 
-    public void beginChristmasEvent(int reserveDate, Order order) {
+    public List<Object> beginChristmasEvent(int reserveDate, Order order, List<Object> eventType) {
         ChristmasEvent christmasEvent = initChristmasEvent(reserveDate);
         if (christmasEvent.validateEnableEvent()) {
             order.addTotalDiscountPrice(christmasEvent.calculateDiscountPrice());
+            eventType.add(christmasEvent);
         }
+        return eventType;
     }
 
-    public void beginWeekEvent(int reserveDate, Order order) {
+    public List<Object> beginWeekEvent(int reserveDate, Order order, List<Object> eventType) {
         WeekdayEvent weekdayEvent = initWeekdayEvent(reserveDate, order.getDessertOrderCount());
         if (weekdayEvent.validateEnableEvent()) {
             order.addTotalDiscountPrice(weekdayEvent.calculateDiscountPrice());
+            eventType.add(weekdayEvent);
+            return eventType;
         }
         WeekendEvent weekendEvent = initWeekendEvent(reserveDate, order.getMainMenuOrderCount());
         if (weekendEvent.validateEnableEvent()) {
             order.addTotalDiscountPrice(weekendEvent.calculateDiscountPrice());
+            eventType.add(weekendEvent);
         }
+        return eventType;
     }
 
-    public void beginSpecialEvent(int reserveDate, Order order) {
-        SpecialEvent specialEvent = initSpecialEvent(order.getTotalPrice());
+    public List<Object> beginSpecialEvent(int reserveDate, Order order, List<Object> eventType) {
+        SpecialEvent specialEvent = initSpecialEvent(reserveDate);
         if (specialEvent.validateEnableEvent()) {
             order.addTotalDiscountPrice(specialEvent.calculateDiscountPrice());
+            eventType.add(specialEvent);
         }
+        return eventType;
     }
 
-    public void beginPresentEvent(Order order) {
+    public List<Object> beginPresentEvent(Order order, List<Object> eventType) {
         PresentEvent presentEvent = initPresentEvent(order.getTotalPrice());
         if (presentEvent.validateEnableEvent()) {
             order.addTotalDiscountPrice(presentEvent.calculateDiscountPrice());
+            eventType.add(presentEvent);
         }
+        return eventType;
+    }
+
+    public String assignBadge(Order order) {
+        Badge badge = initBadge(order.getTotalDiscountPrice());
+        String assignedBadgeName = badge.getBadgeName();
+        return assignedBadgeName;
     }
 
     private ChristmasEvent initChristmasEvent(int reserveDate) {
@@ -59,5 +78,9 @@ public class EventService {
 
     private PresentEvent initPresentEvent(int totalPrice) {
         return new PresentEvent(totalPrice);
+    }
+
+    private Badge initBadge(int totalDiscountPrice) {
+        return new Badge(totalDiscountPrice);
     }
 }

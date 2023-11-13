@@ -10,6 +10,7 @@ public class WeekdayEvent extends Event {
     private boolean isEnabled;
     private int reserveDay;
     private int dessertOrderCount;
+    private static int discountPrice;
     private List<Integer> weekDays = Arrays.asList(EventConstant.THURSDAY, EventConstant.MONDAY, EventConstant.TUESDAY,
             EventConstant.WEDNESDAY, EventConstant.SUNDAY);
 
@@ -30,11 +31,16 @@ public class WeekdayEvent extends Event {
 
     @Override
     public int calculateDiscountPrice() {
-        return EventConstant.WEEK_EVENT_DISCOUNT_PRICE * dessertOrderCount;
+        discountPrice = EventConstant.WEEK_EVENT_DISCOUNT_PRICE * dessertOrderCount;
+        return discountPrice;
     }
 
     @Override    
     public Boolean getIsEnabled(){
         return isEnabled;
+    }
+
+    public static int getDiscountPrice(){
+        return discountPrice;
     }
 }
