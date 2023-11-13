@@ -1,7 +1,9 @@
 package christmas.domain;
 
+import christmas.constant.EventConstant;
+
 public class ChristmasEvent extends Event {
-    int reservationDate;
+    private int reservationDate;
 
     public ChristmasEvent(int reservationDate) {
         this.reservationDate = reservationDate;
@@ -10,13 +12,11 @@ public class ChristmasEvent extends Event {
     @Override
     public Boolean validateEnableEvent() {
         return (reservationDate <= 25);
-
     }
 
     @Override
-    public void calculateDiscountPrice() {
-        // TODO Auto-generated method stub
-
+    public int calculateDiscountPrice() {
+        return EventConstant.MAX_CHRISTMAS_EVENT_DISCOUNT_PRICE
+                - (reservationDate - 1) * EventConstant.DISCOUNT_PER_DAY;
     }
-
 }

@@ -7,7 +7,7 @@ public class WeekdayEvent extends Event{
         return null;
     }
     @Override
-    public void calculateDiscountPrice() {
+    public int calculateDiscountPrice() {
         // TODO Auto-generated method stub
         
     }

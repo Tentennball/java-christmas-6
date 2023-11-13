@@ -1,6 +1,6 @@
 package christmas.domain;
 
 public abstract class Event {
-    public abstract void calculateDiscountPrice();
+    public abstract int calculateDiscountPrice();
     public abstract Boolean validateEnableEvent();
 }

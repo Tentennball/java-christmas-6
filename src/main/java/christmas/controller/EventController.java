@@ -14,6 +14,14 @@ public class EventController {
     public void runningEvent(Date date, Order order) {
         int reserveDate = date.getDate();
         int totalPrice = order.getTotalPrice();
-        
+        beginEvent(reserveDate, totalPrice, order);
     }
+
+    public void beginEvent(int reserveDate, int totalPrice, Order order) {
+        eventService.beginChristmasEvent(reserveDate, order);
+        eventService.beginWeekEvent(reserveDate, order);
+        eventService.beginSpecialEvent(reserveDate, order.getTotalPrice());
+        eventService.beginPresentEvent(order.getTotalDiscountPrice());
+    }
+
 }

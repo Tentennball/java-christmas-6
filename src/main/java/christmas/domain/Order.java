@@ -1,11 +1,21 @@
 package christmas.domain;
 
 public class Order {
-    private int totalPrice = 0;
-    private int totalOrderCount = 0;
-    private int dessertOrderCount = 0;
-    private int mainMenuOrderCount = 0;
-    private int beverageOrderCount = 0;
+    private int totalPrice;
+    private int totalOrderCount;
+    private int totalDisCountPrice;
+    private int dessertOrderCount;
+    private int mainMenuOrderCount;
+    private int beverageOrderCount;
+
+    public Order() {
+        this.totalPrice = 0;
+        this.totalOrderCount = 0;
+        this.dessertOrderCount = 0;
+        this.mainMenuOrderCount = 0;
+        this.beverageOrderCount = 0;
+        this.totalDisCountPrice = 0;
+    }
 
     public void addTotalPrice(int price) {
         totalPrice += price;
@@ -13,6 +23,14 @@ public class Order {
 
     public void addTotalOrderCount(int orderCount) {
         totalOrderCount += orderCount;
+    }
+
+    public void addTotalDiscountPrice(int discountPrice){
+        totalDisCountPrice += discountPrice;
+    }
+
+    public int getTotalDiscountPrice(){
+        return totalDisCountPrice;
     }
 
     public void addDessertOrderCount(int dessertOrderCount) {
