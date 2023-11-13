@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.constant.EventConstant;
 import christmas.domain.Date;
 import christmas.domain.Menu;
 import christmas.domain.Order;
@@ -43,6 +44,6 @@ public class PromotionController {
     }
 
     public Boolean isOpenEvent(int totalPrice) {
-        return totalPrice >= 10000;
+        return totalPrice >= EventConstant.BEGIN_EVENT_PRICE;
     }
 }
