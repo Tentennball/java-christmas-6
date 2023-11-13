@@ -20,8 +20,8 @@ public class EventController {
     public void beginEvent(int reserveDate, int totalPrice, Order order) {
         eventService.beginChristmasEvent(reserveDate, order);
         eventService.beginWeekEvent(reserveDate, order);
-        eventService.beginSpecialEvent(reserveDate, order.getTotalPrice());
-        eventService.beginPresentEvent(order.getTotalDiscountPrice());
+        eventService.beginSpecialEvent(reserveDate, order);
+        eventService.beginPresentEvent(order);
     }
 
 }
