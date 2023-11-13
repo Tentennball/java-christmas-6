@@ -33,6 +33,17 @@ public class Order {
         return totalDisCountPrice;
     }
 
+    public int getDessertOrderCount(){
+        return dessertOrderCount;
+    }
+
+    public int getMainMenuOrderCount(){
+        return mainMenuOrderCount;
+    }
+
+    public int getBeverageOrderCount(){
+        return beverageOrderCount;
+    }
     public void addDessertOrderCount(int dessertOrderCount) {
         this.dessertOrderCount += dessertOrderCount;
     }
