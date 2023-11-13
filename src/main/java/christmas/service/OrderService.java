@@ -21,6 +21,7 @@ public class OrderService {
             Object menuCategory = findCorrectKey(orderKey);
             updateOrderInfo(menuCategory, order, orderKey, orders.get(orderKey));
         }
+        MenuValidate.validateOnlyBeverage(order.getBeverageOrderCount(), order.getTotalOrderCount());
     }
 
     public Object findCorrectKey(String orderKey) {
