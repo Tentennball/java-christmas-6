@@ -49,6 +49,5 @@ public class OrderController {
 
     public void generateOrderCount(Map<String, Integer> menuInfo, Order order) {
         orderService.initOrderCount(menuInfo, order);
-        System.out.println(order.getTotalPrice());
     }
 }

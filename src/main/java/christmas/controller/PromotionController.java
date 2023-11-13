@@ -6,6 +6,10 @@ import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.view.OutputView;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+
 public class PromotionController {
     OrderController orderController;
     EventController eventController;
@@ -19,12 +23,20 @@ public class PromotionController {
         welcomeGreet();
         Date date = inputDate();
         Menu menu = inputMenu();
+        printPreviewMessage();
+        printMenu(menu.getMenuInfo());
+
         Order order = inputOrder();
+
         orderController.generateOrderCount(menu.getMenuInfo(), order);
+        List<Object> executedEvent = new ArrayList<>();
         if (isOpenEvent(order.getTotalPrice())) {
-            eventController.runningEvent(date, order);
+            executedEvent = eventController.runningEvent(date, order);
         }
 
+        String badgeName = eventController.initBadge(order);
+
+        printBill(order, executedEvent, badgeName);
     }
 
     public Date inputDate() {
@@ -45,5 +57,20 @@ public class PromotionController {
 
     public Boolean isOpenEvent(int totalPrice) {
         return totalPrice >= EventConstant.BEGIN_EVENT_PRICE;
+    }
+
+    public void printPreviewMessage() {
+        OutputView.printPreviewEventTitle();
+    }
+
+    public void printMenu(Map<String, Integer> menuInfo) {
+        OutputView.printOrderMenu(menuInfo);
+    }
+
+    public void printBill(Order order, List<Object> executedEvent, String badgeName) {
+        OutputView.printTotalPrice(order.getTotalPrice());
+        OutputView.printEventHistory(executedEvent, order);
+        OutputView.printTotalPriceContainDiscount(executedEvent, order);
+        OutputView.printBadgeName(badgeName);
     }
 }

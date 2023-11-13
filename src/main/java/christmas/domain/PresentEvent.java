@@ -5,7 +5,7 @@ import christmas.constant.EventConstant;
 public class PresentEvent extends Event{
     private boolean isEnabled;
     private int totalPrice;
-    private static int discountPrice;
+    private int discountPrice;
     public PresentEvent(int totalPrice){
         this.totalPrice = totalPrice;
     }
@@ -29,7 +29,7 @@ public class PresentEvent extends Event{
         return isEnabled;
     }
 
-    public static int getDiscountPrice(){
+    public int getDiscountPrice(){
         return discountPrice;
     }
 }

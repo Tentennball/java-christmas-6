@@ -10,7 +10,7 @@ public class WeekendEvent extends Event {
     private boolean isEnabled;
     private int reserveDay;
     private int mainMenuOrderCount;
-    private static int discountPrice;
+    private int discountPrice;
     private List<Integer> weekDays = Arrays.asList(EventConstant.FRIDAY, EventConstant.SATURDAY);
 
     public WeekendEvent(int reserveDate, int mainMenuOrderCount) {
@@ -39,7 +39,7 @@ public class WeekendEvent extends Event {
         return isEnabled;
     }
 
-    public static int getDiscountPrice(){
+    public int getDiscountPrice(){
         return discountPrice;
     }
 }

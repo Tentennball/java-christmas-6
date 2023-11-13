@@ -5,7 +5,7 @@ import christmas.constant.EventConstant;
 public class ChristmasEvent extends Event {
     private boolean isEnabled;
     private int reservationDate;
-    private static int discountPrice;
+    private int discountPrice;
     public ChristmasEvent(int reservationDate) {
         this.reservationDate = reservationDate;
     }
@@ -22,8 +22,8 @@ public class ChristmasEvent extends Event {
 
     @Override
     public int calculateDiscountPrice() {
-        discountPrice = EventConstant.MAX_CHRISTMAS_EVENT_DISCOUNT_PRICE
-                - (reservationDate - 1) * EventConstant.DISCOUNT_PER_DAY;
+        discountPrice = EventConstant.CHRISTMAS_EVENT_START_PRICE
+                + (reservationDate - 1) * EventConstant.DISCOUNT_PER_DAY;
         return discountPrice; 
     }
 
@@ -32,7 +32,7 @@ public class ChristmasEvent extends Event {
         return isEnabled;
     }
 
-    public static int getDiscountPrice(){
+    public int getDiscountPrice(){
         return discountPrice;
     }
 }

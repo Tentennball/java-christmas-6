@@ -7,7 +7,7 @@ public class SpecialEvent extends Event {
     private boolean isEnabled;
     private int reserveDate;
     private int reserveDay;
-    private static int discountPrice;
+    private int discountPrice;
 
     public SpecialEvent(int reserveDate) {
         this.reserveDate = reserveDate;
@@ -35,7 +35,7 @@ public class SpecialEvent extends Event {
         return isEnabled;
     }
 
-    public static int getDiscountPrice(){
+    public int getDiscountPrice(){
         return discountPrice;
     }
 }

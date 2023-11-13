@@ -25,25 +25,26 @@ public class Order {
         totalOrderCount += orderCount;
     }
 
-    public void addTotalDiscountPrice(int discountPrice){
+    public void addTotalDiscountPrice(int discountPrice) {
         totalDisCountPrice += discountPrice;
     }
 
-    public int getTotalDiscountPrice(){
+    public int getTotalDiscountPrice() {
         return totalDisCountPrice;
     }
 
-    public int getDessertOrderCount(){
+    public int getDessertOrderCount() {
         return dessertOrderCount;
     }
 
-    public int getMainMenuOrderCount(){
+    public int getMainMenuOrderCount() {
         return mainMenuOrderCount;
     }
 
-    public int getBeverageOrderCount(){
+    public int getBeverageOrderCount() {
         return beverageOrderCount;
     }
+
     public void addDessertOrderCount(int dessertOrderCount) {
         this.dessertOrderCount += dessertOrderCount;
     }

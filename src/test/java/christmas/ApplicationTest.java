@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class ApplicationTest extends NsTest {
     private static final String LINE_SEPARATOR = System.lineSeparator();
-    @Disabled
     @Test
     void 모든_타이틀_출력() {
         assertSimpleTest(() -> {
@@ -25,7 +24,6 @@ class ApplicationTest extends NsTest {
             );
         });
     }
-    @Disabled
     @Test
     void 혜택_내역_없음_출력() {
         assertSimpleTest(() -> {
