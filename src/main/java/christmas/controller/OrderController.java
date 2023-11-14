@@ -21,9 +21,8 @@ public class OrderController {
     }
 
     public Date generateDate() {
-        try {
-            InputView.printReservationDateDecision();
-            String reservationDate = Console.readLine();
+        try {     
+            String reservationDate = InputView.readReservationDateDecision();
             return dateService.reserveDate(reservationDate);
         } catch (IllegalArgumentException e) {
             ErrorView.printErrorMessage(e.getMessage());
@@ -32,9 +31,8 @@ public class OrderController {
     }
 
     public Menu generateMenu() {
-        try {
-            InputView.printOrderRequest();
-            String menuInfo = Console.readLine();
+        try {    
+            String menuInfo = InputView.readOrderRequest();
             return orderService.initMenu(menuInfo);
 
         } catch (IllegalArgumentException e) {

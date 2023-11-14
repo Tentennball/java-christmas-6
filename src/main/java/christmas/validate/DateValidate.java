@@ -17,7 +17,7 @@ public class DateValidate {
 
     public static void validateDateSize(String date) {
         int numericDate = FormatUtil.stringToInteger(date);
-        if (numericDate > 31 || numericDate < 1)
+        if (numericDate > ValidateConstant.LAST_DAY_OF_MONTH || numericDate < ValidateConstant.FIRST_DAY_OF_MONTH)
             throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_DATE);
     }
 }
