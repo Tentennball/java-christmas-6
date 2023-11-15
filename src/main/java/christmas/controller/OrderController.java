@@ -21,7 +21,7 @@ public class OrderController {
     }
 
     public Date generateDate() {
-        try {     
+        try {
             String reservationDate = InputView.readReservationDateDecision();
             return dateService.reserveDate(reservationDate);
         } catch (IllegalArgumentException e) {
@@ -31,14 +31,8 @@ public class OrderController {
     }
 
     public Menu generateMenu() {
-        try {    
-            String menuInfo = InputView.readOrderRequest();
-            return orderService.initMenu(menuInfo);
-
-        } catch (IllegalArgumentException e) {
-            ErrorView.printErrorMessage(e.getMessage());
-            return generateMenu();
-        }
+        String menuInfo = InputView.readOrderRequest();
+        return orderService.initMenu(menuInfo);
     }
 
     public Order generateOrder() {

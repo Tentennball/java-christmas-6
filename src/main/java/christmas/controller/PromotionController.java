@@ -4,6 +4,7 @@ import christmas.constant.EventConstant;
 import christmas.domain.Date;
 import christmas.domain.Menu;
 import christmas.domain.Order;
+import christmas.view.ErrorView;
 import christmas.view.OutputView;
 
 import java.util.List;
@@ -22,21 +23,29 @@ public class PromotionController {
     public void run() {
         welcomeGreet();
         Date date = inputDate();
-        Menu menu = inputMenu();
-        printPreviewMessage();
-        printMenu(menu.getMenuInfo());
+        while (true) {
+            try {
+                Menu menu = inputMenu();
+                
+                Order order = inputOrder();
 
-        Order order = inputOrder();
-
-        orderController.generateOrderCount(menu.getMenuInfo(), order);
-        List<Object> executedEvent = new ArrayList<>();
-        if (isOpenEvent(order.getTotalPrice())) {
-            executedEvent = eventController.runningEvent(date, order);
+                orderController.generateOrderCount(menu.getMenuInfo(), order);
+                List<Object> executedEvent = new ArrayList<>();
+                if (isOpenEvent(order.getTotalPrice())) {
+                    executedEvent = eventController.runningEvent(date, order);
+                }
+                printMenu(menu.getMenuInfo());
+                printPreviewMessage();
+                
+                String badgeName = eventController.initBadge(order);
+    
+                printBill(order, executedEvent, badgeName);
+                break;
+            } catch (IllegalArgumentException e) {
+                ErrorView.printErrorMessage(e.getMessage());
+            }
         }
 
-        String badgeName = eventController.initBadge(order);
-
-        printBill(order, executedEvent, badgeName);
     }
 
     public Date inputDate() {

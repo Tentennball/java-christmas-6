@@ -91,9 +91,9 @@ public class OutputView {
     }
 
     public static void printChristmasEvent(List<Object> executedEvent) {
-        System.out.print(CHRISTMAS_EVENT_TITLE);
         for (Object eventType : executedEvent) {
             if (eventType instanceof ChristmasEvent) {
+                System.out.print(CHRISTMAS_EVENT_TITLE);
                 ChristmasEvent event = (ChristmasEvent) eventType;
                 System.out.printf(PRICE_MINUS_FORMAT, event.getDiscountPrice());
                 return;
@@ -102,9 +102,9 @@ public class OutputView {
     }
 
     public static void printWeekdayEvent(List<Object> executedEvent) {
-        System.out.print(WEEKDAY_EVENT_TITLE);
         for (Object eventType : executedEvent) {
             if (eventType instanceof WeekdayEvent) {
+                System.out.print(WEEKDAY_EVENT_TITLE);
                 WeekdayEvent event = (WeekdayEvent) eventType;
                 System.out.printf(PRICE_MINUS_FORMAT, event.getDiscountPrice());
                 return;
@@ -113,9 +113,9 @@ public class OutputView {
     }
 
     public static void printWeekendEvent(List<Object> executedEvent) {
-        System.out.print(WEEKEND_EVENT_TITLE);
         for (Object eventType : executedEvent) {
             if (eventType instanceof WeekendEvent) {
+                System.out.print(WEEKEND_EVENT_TITLE);
                 WeekendEvent event = (WeekendEvent) eventType;
                 System.out.printf(PRICE_MINUS_FORMAT, event.getDiscountPrice());
                 return;
@@ -124,9 +124,9 @@ public class OutputView {
     }
 
     public static void printSpecialEvent(List<Object> executedEvent) {
-        System.out.print(SPECIAL_EVENT_TITLE);
         for (Object eventType : executedEvent) {
             if (eventType instanceof SpecialEvent) {
+                System.out.print(SPECIAL_EVENT_TITLE);
                 SpecialEvent event = (SpecialEvent) eventType;
                 System.out.printf(PRICE_MINUS_FORMAT, event.getDiscountPrice());
                 return;
@@ -135,9 +135,9 @@ public class OutputView {
     }
 
     public static void printPresentEvent(List<Object> executedEvent) {
-        System.out.print(PRESENT_EVENT_TITLE);
         for (Object eventType : executedEvent) {
             if (eventType instanceof PresentEvent) {
+                System.out.print(PRESENT_EVENT_TITLE);
                 PresentEvent event = (PresentEvent) eventType;
                 System.out.printf(PRICE_MINUS_FORMAT, event.getDiscountPrice());
                 return;

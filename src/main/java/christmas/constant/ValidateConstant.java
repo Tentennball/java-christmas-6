@@ -7,4 +7,6 @@ public class ValidateConstant {
     public static final String HYPHEN = "-";
     public static final int LAST_DAY_OF_MONTH = 31;
     public static final int FIRST_DAY_OF_MONTH = 1;
+    public static final int MAX_ORDER_COUNT = 20;
+    public static final int MIN_ORDER_COUNT = 1;
 }

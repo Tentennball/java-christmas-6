@@ -29,7 +29,7 @@ public class MenuValidate {
         for (String menu : menuInfo.keySet()) {
             menuCount += menuInfo.get(menu);
         }
-        if (menuCount < 0 || menuCount > 20) {
+        if (menuCount < ValidateConstant.MIN_ORDER_COUNT || menuCount > ValidateConstant.MAX_ORDER_COUNT) {
             throw new IllegalArgumentException(ExceptionConstant.ERROR_MESSAGE_PREFIX + ErrorConstant.INVALID_ORDER);
         }
     }
